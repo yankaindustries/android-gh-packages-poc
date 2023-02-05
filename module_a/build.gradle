@@ -54,7 +54,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 groupId = "com.yanka.mc.module"
-                artifactId = "a"
+                artifactId = "aar-poc-module-a"
                 version = "0.0.1"
                 from(components["release"])
             }
@@ -66,8 +66,8 @@ afterEvaluate {
         // https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#example-using-gradle-groovy-for-a-single-package-in-a-repository
         repositories {
             maven {
-                name = "moduleA"
-                url = uri("https://github.com/achie/android-gh-packages-poc")
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/achie/android-gh-packages-poc")
                 credentials {
                     username = System.getenv("GITHUB_USERNAME")
                     password = System.getenv("GITHUB_TOKEN")
