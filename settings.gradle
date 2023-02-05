@@ -15,11 +15,18 @@ dependencyResolutionManagement {
             url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
 
             Properties props = new Properties()
-            props.load(new FileInputStream(new File("./local.properties")))
+            def file = new File("./local.properties")
+            def githubUsername = null
+            def githubToken = null
+            if (file != null) {
+                props.load(new FileInputStream(file))
+                githubUsername = props.getProperty("github-username")
+                githubToken = props.getProperty("github-username")
+            }
 
             credentials {
-                username = props.getProperty("github-username") ?: System.getenv("GITHUB_USERNAME")
-                password = props.getProperty("github-token") ?: System.getenv("GITHUB_TOKEN")
+                username = githubUsername ?: System.getenv("GITHUB_USERNAME")
+                password = githubToken ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
