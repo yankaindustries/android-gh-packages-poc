@@ -1,24 +1,12 @@
-name: Publish Module
+name: Build App
 
 on:
   workflow_dispatch:
-    inputs:
-      platform:
-        description: 'Module to publish'
-        type: choice
-        required: true
-        default: 'module_b'
-        options:
-          - module_a
-          - module_b
-# TODO We need to auto increment minor version in prod builds and track it. It should also be reset
-# for bob minor builds.
-
 
 jobs:
 
   publish:
-    name: Publishing ${{ inputs.platform }}
+    name: Build app
     runs-on:
       labels: ubuntu-latest
 
@@ -43,13 +31,13 @@ jobs:
         run: chmod +x gradlew
         shell: bash
 
-      - name: Publish Module's Package
+      - name: Build
         uses: gradle/gradle-build-action@v2
         with:
           arguments: >-
             --stacktrace
-            :${{ inputs.platform }}:publish
+            :app:assembleRelease
         env:
-# TODO Replace these with non personal token and actor
+          # TODO Replace these with non personal token and actor
           GITHUB_USERNAME: achie
           GITHUB_TOKEN: ${{ secrets.KRISHNAS_TEMP_TOKEN_2023 }}
