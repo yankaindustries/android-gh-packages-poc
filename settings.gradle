@@ -14,14 +14,19 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
 
-            Properties props = new Properties()
-            def file = new File("./local.properties")
             def githubUsername = null
             def githubToken = null
-            if (file != null) {
-                props.load(new FileInputStream(file))
-                githubUsername = props.getProperty("github-username")
-                githubToken = props.getProperty("github-username")
+
+            try {
+                Properties props = new Properties()
+                def file = new File("./local.properties")
+                if (file != null) {
+                    props.load(new FileInputStream(file))
+                    githubUsername = props.getProperty("github-username")
+                    githubToken = props.getProperty("github-username")
+                }
+            } catch (Exception e) {
+                println("Error reading local.properties")
             }
 
             credentials {
