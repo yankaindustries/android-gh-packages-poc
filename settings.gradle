@@ -29,7 +29,7 @@ dependencyResolutionManagement {
                     githubToken = props.getProperty("github-username")
                 }
             } catch (Exception e) {
-                println("Error reading local.properties")
+                println("Error reading local.properties ${e.message}")
             }
             if (githubUsername == null || githubUsername.trim().length() == 0
                     || githubToken == null || githubToken.trim().length() == 0) {
@@ -45,6 +45,7 @@ dependencyResolutionManagement {
         }
     }
 }
+
 rootProject.name = "Aar PoC"
 
 include ':app'

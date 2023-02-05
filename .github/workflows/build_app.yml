@@ -36,7 +36,7 @@ jobs:
         with:
           arguments: >-
             --stacktrace
-            :app:assembleRelease
+            :app:assembleDebug
         env:
           # TODO Replace these with non personal token and actor
           GITHUB_USERNAME: achie

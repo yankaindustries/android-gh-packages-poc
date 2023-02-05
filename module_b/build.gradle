@@ -29,10 +29,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
     implementation "com.yanka.mc.module:aar-poc-module-a:0.0.1"
+//    implementation(project(":module_a"))
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
