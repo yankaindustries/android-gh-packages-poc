@@ -28,10 +28,16 @@ dependencyResolutionManagement {
             } catch (Exception e) {
                 println("Error reading local.properties")
             }
+            if (githubUsername == null || githubUsername.trim().length() == 0
+                    || githubToken == null || githubToken.trim().length() == 0) {
+                println("Developer's local credentials not found. Falling back to env vars")
+                githubUsername = System.getenv("GITHUB_USERNAME")
+                githubToken = System.getenv("GITHUB_TOKEN")
+            }
 
             credentials {
-                username = githubUsername ?: System.getenv("GITHUB_USERNAME")
-                password = githubToken ?: System.getenv("GITHUB_TOKEN")
+                username = githubUsername
+                password = githubToken
             }
         }
     }

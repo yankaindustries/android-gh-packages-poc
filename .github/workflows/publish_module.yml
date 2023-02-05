@@ -49,6 +49,10 @@ jobs:
           arguments: >-
             --stacktrace
             :${{ inputs.platform }}:assembleRelease
+        env:
+          # TODO Replace these with non personal token and actor
+          GITHUB_USERNAME: achie
+          GITHUB_TOKEN: ${{ secrets.KRISHNAS_TEMP_TOKEN_2023 }}
 
       - name: Publish Module's Package
         uses: gradle/gradle-build-action@v2

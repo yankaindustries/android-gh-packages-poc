@@ -72,9 +72,6 @@ afterEvaluate {
                     username = System.getenv("GITHUB_USERNAME")
                     password = System.getenv("GITHUB_TOKEN")
                 }
-                // This line below can be used to test aar generation locally
-                // Comment out the url and credentials above when testing locally.
-//                url = uri("${project.buildDir}/repo_aar")
             }
         }
     }
