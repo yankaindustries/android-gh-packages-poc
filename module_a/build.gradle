@@ -58,13 +58,6 @@ afterEvaluate {
                 version = "0.0.1"
                 from(components["release"])
             }
-
-            // Don't delete it yet. I'm testing a few things and this is just a PoC.
-//            mavenAar(MavenPublication) {
-//                from(components["release"])
-//                artifactId = "a"
-//                groupId = "com.yanka.mc.module"
-//            }
         }
 
         // Android Developer docs that explain how to create an android module for publishing
@@ -74,7 +67,7 @@ afterEvaluate {
         repositories {
             maven {
                 name = "moduleA"
-                url = uri("https://github.com/yankaindustries/android-aar-poc")
+                url = uri("https://github.com/achie/android-gh-packages-poc")
                 credentials {
                     username = System.getenv("GITHUB_USERNAME")
                     password = System.getenv("GITHUB_TOKEN")
@@ -82,7 +75,6 @@ afterEvaluate {
                 // This line below can be used to test aar generation locally
                 // Comment out the url and credentials above when testing locally.
 //                url = uri("${project.buildDir}/repo_aar")
-
             }
         }
     }
