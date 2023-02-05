@@ -5,11 +5,23 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
+
+            Properties props = new Properties()
+            props.load(new FileInputStream(new File("./local.properties")))
+
+            credentials {
+                username = props.getProperty("github-username") ?: System.getenv("GITHUB_USERNAME")
+                password = props.getProperty("github-token") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 rootProject.name = "Aar PoC"
