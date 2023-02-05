@@ -49,4 +49,4 @@ jobs:
         env:
 # TODO Replace these with non personal token and actor
           GITHUB_USERNAME: achie
-          GITHUB_TOKEN: ${{ secrets.KRISHNAS_PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.KRISHNAS_TEMP_TOKEN_2023 }}
