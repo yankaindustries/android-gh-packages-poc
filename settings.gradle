@@ -13,6 +13,9 @@ dependencyResolutionManagement {
         mavenCentral()
         maven {
             url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
+            authentication {
+                basic(BasicAuthentication)
+            }
 
             def githubUsername = null
             def githubToken = null
