@@ -1,0 +1,52 @@
+name: Publish Module A
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+
+jobs:
+
+  publish:
+    name: Publish
+    runs-on:
+      labels: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          check-latest: false
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.4.2
+          cache-read-only:  ${{ github.ref != 'refs/heads/develop' }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        shell: bash
+
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: >-
+            --stacktrace
+            :module_a:assembleRelease
+
+      - name: Publish Module's Package
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: >-
+            --stacktrace
+            :module_a:publish
+        env:
+# TODO Replace these with non personal token and actor
+          GITHUB_USERNAME: achie
+          GITHUB_TOKEN: ${{ secrets.KRISHNAS_PERSONAL_TOKEN }}
