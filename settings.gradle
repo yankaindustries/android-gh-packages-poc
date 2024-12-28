@@ -36,6 +36,9 @@ dependencyResolutionManagement {
                 println("Developer's local credentials not found. Falling back to env vars")
                 githubUsername = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
                 githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
+
+                println("GH Packages username length: " + githubUsername.length())
+                println("GH Packages password length: " + githubUsername.length())
             }
 
             credentials {
