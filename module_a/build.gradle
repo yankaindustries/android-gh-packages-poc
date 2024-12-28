@@ -68,9 +68,19 @@ afterEvaluate {
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
+
+                def githubUsername = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
+                def githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
+
+                if (githubUsername == null || githubToken == null) {
+                    throw new GradleException("Missing credentials for GitHub Packages. Ensure environment variables are set.")
+                }
+
+                println("GH Packages username length: " + (githubUsername != null ? githubUsername.length() : "NOT SET"))
+                println("GH Packages token length: " + (githubToken != null ? githubToken.length() : "NOT SET"))
                 credentials {
-                    username = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
-                    password = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
+                    username = githubUsername
+                    password = githubToken
                 }
             }
         }
