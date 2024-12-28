@@ -38,7 +38,7 @@ dependencyResolutionManagement {
                 githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
 
                 println("GH Packages username length: " + githubUsername.length())
-                println("GH Packages password length: " + githubUsername.length())
+                println("GH Packages password length: " + githubToken.length())
             }
 
             credentials {
