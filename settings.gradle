@@ -25,8 +25,8 @@ dependencyResolutionManagement {
                 def file = new File("./local.properties")
                 if (file != null) {
                     props.load(new FileInputStream(file))
-                    githubUsername = props.getProperty("github-username")
-                    githubToken = props.getProperty("github-username")
+                    githubUsername = props.getProperty("gh-packages-username")
+                    githubToken = props.getProperty("gh-packages-token")
                 }
             } catch (Exception e) {
                 println("Error reading local.properties ${e.message}")
@@ -34,8 +34,11 @@ dependencyResolutionManagement {
             if (githubUsername == null || githubUsername.trim().length() == 0
                     || githubToken == null || githubToken.trim().length() == 0) {
                 println("Developer's local credentials not found. Falling back to env vars")
-                githubUsername = System.getenv("GITHUB_USERNAME")
-                githubToken = System.getenv("GITHUB_TOKEN")
+                githubUsername = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
+                githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
+
+                println("GH Packages username length: " + githubUsername.length())
+                println("GH Packages password length: " + githubToken.length())
             }
 
             credentials {

@@ -14,9 +14,9 @@ However, for smaller size of teams and modules, it may easy to have every module
 ## Playing with this sample
 You will need your github username, and a personal github access token (classic) to test this sample. The repo is already setup with Krishna's personal token. So you will need to just put these in your `local.properties` if you are testing this locally.
 
-github-username=`your_user_name`
+gh-packages-username=`your_user_name`
 
-github-token=`your_token`
+gh-packages-token=`your_token`
 
 ## Publishing module updates
 Use the Publish module workflow and select a module that needs to be published. This doesn't have automatic version updates. So go ahead and update the version in the module specific build.gradle for the publishing artifact before running the publish step.

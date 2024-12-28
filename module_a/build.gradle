@@ -6,13 +6,13 @@ plugins {
 
 android {
     namespace 'com.yanka.mc.module.a'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        minSdk 22
-        targetSdk 33
+        minSdk 30
+        targetSdk 34
         aarMetadata {
-            minCompileSdk = 22
+            minCompileSdk = 28
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,7 +55,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.yanka.mc.module"
                 artifactId = "aar-poc-module-a"
-                version = "0.0.1"
+                version = "0.0.2"
                 from(components["release"])
             }
         }
@@ -68,9 +68,22 @@ afterEvaluate {
             maven {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
+
+                def githubUsername = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
+                def githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
+
+                if (githubUsername == null || githubToken == null) {
+                    logger.debug("Missing credentials for GitHub Packages. " +
+                            "Ensure environment variables are set for publishing. " +
+                            "This may be safely ignored for local builds.")
+                    return
+                }
+
+                logger.debug("GH Packages username: " + (githubUsername != null ? "PRESENT" : "NOT SET"))
+                logger.debug("GH Packages token: " + (githubToken != null ? "PRESENT" : "NOT SET"))
                 credentials {
-                    username = System.getenv("GITHUB_USERNAME")
-                    password = System.getenv("GITHUB_TOKEN")
+                    username = githubUsername
+                    password = githubToken
                 }
             }
         }
