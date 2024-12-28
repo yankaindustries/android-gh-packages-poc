@@ -73,11 +73,14 @@ afterEvaluate {
                 def githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
 
                 if (githubUsername == null || githubToken == null) {
-                    throw new GradleException("Missing credentials for GitHub Packages. Ensure environment variables are set.")
+                    logger.debug("Missing credentials for GitHub Packages. " +
+                            "Ensure environment variables are set for publishing. " +
+                            "This may be safely ignored for local builds.")
+                    return
                 }
 
-                println("GH Packages username length: " + (githubUsername != null ? githubUsername.length() : "NOT SET"))
-                println("GH Packages token length: " + (githubToken != null ? githubToken.length() : "NOT SET"))
+                logger.debug("GH Packages username: " + (githubUsername != null ? "PRESENT" : "NOT SET"))
+                logger.debug("GH Packages token: " + (githubToken != null ? "PRESENT" : "NOT SET"))
                 credentials {
                     username = githubUsername
                     password = githubToken
