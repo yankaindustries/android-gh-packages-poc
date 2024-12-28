@@ -50,5 +50,5 @@ jobs:
             --stacktrace
             :${{ inputs.platform }}:publish
         env:
-          GITHUB_USERNAME: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_USERNAME }}
-          GITHUB_TOKEN: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_TOKEN }}
+          MC_ORG_ANDROID_GH_PACKAGES_USERNAME: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_USERNAME }}
+          MC_ORG_ANDROID_GH_PACKAGES_TOKEN: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_TOKEN }}
