@@ -50,6 +50,5 @@ jobs:
             --stacktrace
             :${{ inputs.platform }}:publish
         env:
-# TODO Replace these with non personal token and actor
-          GITHUB_USERNAME: achie
-          GITHUB_TOKEN: ${{ secrets.KRISHNAS_TEMP_TOKEN_2023 }}
+          GITHUB_USERNAME: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.MC_ORG_ANDROID_GH_PACKAGES_TOKEN }}
