@@ -6,13 +6,13 @@ plugins {
 
 android {
     namespace 'com.yanka.mc.module.a'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        minSdk 22
-        targetSdk 33
+        minSdk 30
+        targetSdk 34
         aarMetadata {
-            minCompileSdk = 22
+            minCompileSdk = 28
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,7 +55,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.yanka.mc.module"
                 artifactId = "aar-poc-module-a"
-                version = "0.0.1"
+                version = "0.0.2"
                 from(components["release"])
             }
         }
@@ -69,8 +69,8 @@ afterEvaluate {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
                 credentials {
-                    username = System.getenv("GITHUB_USERNAME")
-                    password = System.getenv("GITHUB_TOKEN")
+                    username = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
+                    password = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
                 }
             }
         }

@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace "com.yanka.mc.aar"
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId = "com.yanka.mc.aar"
-        minSdk = 22
-        targetSdk = 33
+        minSdk = 30
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
