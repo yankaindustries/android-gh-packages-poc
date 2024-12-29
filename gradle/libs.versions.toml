@@ -1,0 +1,27 @@
+[versions]
+aarPocModuleA = "0.0.3"
+aarPocModuleB = "0.0.3"
+
+corektx = "1.9.0"
+appCompat = "1.7.0"
+
+material = "1.12.0"
+
+junit = "4.13.2"
+androidxJunit = "1.1.5"
+espressoCore = "3.5.1"
+
+[libraries]
+aar-poc-module-a = { module = "com.yanka.mc.module:aar-poc-module-a", version.ref = "aarPocModuleA" }
+aar-poc-module-b = { module = "com.yanka.mc.module:aar-poc-module-b", version.ref = "aarPocModuleB" }
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
+
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+
+[plugins]

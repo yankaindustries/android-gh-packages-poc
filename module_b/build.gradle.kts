@@ -41,14 +41,14 @@ android {
 }
 
 dependencies {
-    implementation("com.yanka.mc.module:aar-poc-module-a:0.0.2")
+    implementation(libs.aar.poc.module.a)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.0")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
 
 afterEvaluate {
@@ -57,7 +57,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.yanka.mc.module"
                 artifactId = "aar-poc-module-b"
-                version = "0.0.3"
+                version = "0.0.4"
                 from(components["release"])
             }
         }
