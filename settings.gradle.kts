@@ -14,31 +14,31 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://maven.pkg.github.com/yankaindustries/android-gh-packages-poc")
             authentication {
-                basic(BasicAuthentication)
+                create<BasicAuthentication>("basic")
             }
 
-            def githubUsername = null
-            def githubToken = null
+            var githubUsername: String? = null
+            var githubToken: String? = null
 
             try {
-                Properties props = new Properties()
-                def file = new File("./local.properties")
-                if (file != null) {
-                    props.load(new FileInputStream(file))
+                val props = java.util.Properties()
+                val file = File("./local.properties")
+                if (file.exists()) {
+                    props.load(file.inputStream())
                     githubUsername = props.getProperty("gh-packages-username")
                     githubToken = props.getProperty("gh-packages-token")
                 }
-            } catch (Exception e) {
-                println("Error reading local.properties ${e.message}")
+            } catch (e: Exception) {
+                println("Error reading local.properties: ${e.message}")
             }
-            if (githubUsername == null || githubUsername.trim().length() == 0
-                    || githubToken == null || githubToken.trim().length() == 0) {
-                println("Developer's local credentials not found. Falling back to env vars")
+
+            if (githubUsername.isNullOrBlank() || githubToken.isNullOrBlank()) {
+                println("Developer's local credentials not found. Falling back to env vars.")
                 githubUsername = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_USERNAME")
                 githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
 
-                println("GH Packages username length: " + githubUsername.length())
-                println("GH Packages password length: " + githubToken.length())
+                println("GH Packages username length: ${githubUsername?.length ?: "NOT SET"}")
+                println("GH Packages token length: ${githubToken?.length ?: "NOT SET"}")
             }
 
             credentials {
@@ -51,6 +51,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Aar PoC"
 
-include ':app'
-include ':module_a'
-include ':module_b'
+include(":app")
+include(":module_a")
+include(":module_b")
