@@ -1,6 +1,6 @@
 [versions]
 aarPocModuleA = "0.0.3"
-aarPocModuleB = "0.0.3"
+aarPocModuleB = "0.0.4"
 
 corektx = "1.9.0"
 appCompat = "1.7.0"
