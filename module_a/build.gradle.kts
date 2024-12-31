@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
+    id("mc-java-config")
 }
 
 android {
@@ -10,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = 30
-        targetSdk = 34
         aarMetadata {
             minCompileSdk = 28
         }
@@ -27,13 +27,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     publishing {
@@ -76,7 +69,7 @@ afterEvaluate {
                 val githubToken = System.getenv("MC_ORG_ANDROID_GH_PACKAGES_TOKEN")
 
                 if (githubUsername.isNullOrEmpty() || githubToken.isNullOrEmpty()) {
-                    logger.debug(
+                    logger.lifecycle(
                         "Missing credentials for GitHub Packages. " +
                                 "Ensure environment variables are set for publishing. " +
                                 "This may be safely ignored for local builds."
@@ -84,8 +77,8 @@ afterEvaluate {
                     return@maven
                 }
 
-                logger.debug("GH Packages username: ${if (!githubUsername.isNullOrEmpty()) "PRESENT" else "NOT SET"}")
-                logger.debug("GH Packages token: ${if (!githubToken.isNullOrEmpty()) "PRESENT" else "NOT SET"}")
+                logger.lifecycle("GH Packages username: ${if (!githubUsername.isNullOrEmpty()) "PRESENT" else "NOT SET"}")
+                logger.lifecycle("GH Packages token: ${if (!githubToken.isNullOrEmpty()) "PRESENT" else "NOT SET"}")
                 credentials {
                     username = githubUsername
                     password = githubToken

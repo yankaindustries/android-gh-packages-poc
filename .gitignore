@@ -1,19 +1,3 @@
-##################
-# Maven
-##################
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
-
-
 #############
 ## Android ##
 #############
@@ -29,6 +13,10 @@ buildNumber.properties
 bin/
 gen/
 out/
+
+# generated while creating release builds. app is no longer our module and as such we ca ignore this. Change it back if
+# we change our module names
+app/
 
 # Gradle files
 .gradle/
@@ -51,27 +39,32 @@ captures/
 # IntelliJ
 *.iml
 #.idea/
+.idea/appInsightsSettings.xml
 .idea/assetWizardSettings.xml
+.idea/compiler.xml
+.idea/deploymentTargetDropDown.xml
+.idea/deploymentTargetSelector.xml
+.idea/detekt.xml
 .idea/encodings.xml
 .idea/gradle.xml
+.idea/kotlinc.xml
 .idea/misc.xml
+.idea/migrations.xml
 .idea/modules.xml
+.idea/.name
+.idea/navEditor.xml
+.idea/other.xml
 .idea/runConfigurations.xml
+.idea/tasks.xml
 .idea/vcs.xml
 .idea/workspace.xml
-.idea/tasks.xml
 .idea/dictionaries
 .idea/libraries
 .idea/caches
 /.idea/sonarlint
 /.idea/sonarlint-state.xml
-/.idea/detekt.xml
-/.idea/compiler.xml
-/.idea/deploymentTargetDropDown.xml
 /.idea/markdown-navigator.xml
 /.idea/markdown-navigator-enh.xml
-.idea/navEditor.xml
-.idea/kotlinc.xml
 
 .DS_Store
 jarRepositories.xml
@@ -80,3 +73,8 @@ jarRepositories.xml
 .env.development
 
 jacoco.exec
+
+# Use this to put files that we may want to add locally but don't want to be committed to git/vcs.
+.eng_non_vcs
+**/.eng_non_vcs
+*.hprof
